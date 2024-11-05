@@ -1,17 +1,20 @@
 'use client'
 
+import { useMemo } from 'react'
 import { DoubleSide, MeshBasicMaterial } from 'three'
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import * as NoiseJS from 'noisejs'
 import { getTerrainGeometry } from './geometries'
 
-export const Scene = ({ config }: any) => {
+export const Scene = ({ config, shouldRegenerate }: any) => {
   const material = new MeshBasicMaterial({
     vertexColors: true,
     wireframe: config.wireframe,
     side: DoubleSide
   })
 
-  const terrainGeometry = getTerrainGeometry(config)
+  const newNoisePattern = useMemo(() => new NoiseJS.Noise(Math.random()), [shouldRegenerate])
+  const terrainGeometry = getTerrainGeometry(config, newNoisePattern)
 
   return (
     <group>
