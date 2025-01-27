@@ -4,22 +4,25 @@
 
 import { PropsWithChildren } from 'react'
 import dynamic from 'next/dynamic'
-import { s, ThemeProvider, RootStyle, ResetStyle, darken } from '3oilerplate'
+import { CSSProvider, RootStyle, ResetStyle, darken, css } from 'csscomp'
 import { useConfig } from './hooks/useConfig'
 
 const DynamicWrapper = dynamic(() => Promise.resolve(({ children }: PropsWithChildren) => <>{ children }</>), {
   ssr: false
 })
 
-const SApp = s.div({
-  display: 'flex',
-  width: '100%',
-  height: '100%',
-  minHeight: '100vh',
-  backgroundColor: 'black',
-  color: 'white',
-  fontFamily: 'base',
-  fontSize: '16px'
+const SApp = css.div({
+  d: 'flex',
+  fxd: 'column',
+  w: '100%',
+  h: '100%',
+  mih: '100vh',
+  bgc: 'black',
+  c: 'white',
+  ff: 'base',
+  fs: '16px',
+  ai: 'center',
+  jc: 'center'
 })
 
 const App = ({ children }: PropsWithChildren) => {
@@ -35,7 +38,7 @@ const App = ({ children }: PropsWithChildren) => {
   return (
     <html lang="en">
       <body>
-        <ThemeProvider theme={theme}>
+        <CSSProvider theme={theme}>
           <DynamicWrapper>
             <ResetStyle />
             <RootStyle />
@@ -43,7 +46,7 @@ const App = ({ children }: PropsWithChildren) => {
               { children }
             </SApp>
           </DynamicWrapper>
-        </ThemeProvider>
+        </CSSProvider>
       </body>
     </html>
   )

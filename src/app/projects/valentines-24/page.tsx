@@ -1,9 +1,9 @@
 'use client'
 
 import { Canvas } from '@react-three/fiber'
-import { Box } from '3oilerplate'
 import { Scene } from './Scene'
 import { useConfig, makeSeparator, makeButton, makeFolder } from '@/app/hooks/useConfig'
+import { Box } from '@/app/components/Box'
 
 const Page = () => {
   const { config, reset } = useConfig({
@@ -28,7 +28,7 @@ const Page = () => {
   })
 
   return (
-    <Box s={{ width: '100%', div: { mih: '100vh' }, backgroundColor: config?.bgColor }}>
+    <Box css={{ width: '100%', div: { mih: '100vh' }, backgroundColor: config?.bgColor }}>
       <Canvas>
         <Scene config={config} />
       </Canvas>

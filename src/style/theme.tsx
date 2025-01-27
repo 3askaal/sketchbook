@@ -1,4 +1,4 @@
-import { darken, lighten } from '3oilerplate'
+import { darken, lighten } from 'csscomp'
 
 const black = lighten('#000', 5)
 const white = darken('#fff', 5)

@@ -1,10 +1,10 @@
 'use client'
 
 import { Canvas } from '@react-three/fiber'
-import { Box } from '3oilerplate'
 import { Scene } from './Scene'
 import { useConfig, makeSeparator, makeButton, makeFolder } from '@/app/hooks/useConfig'
 import { useReducer } from 'react'
+import { Box } from '@/app/components/Box'
 
 const Page = () => {
   const [shouldRegenerate, regenerate] = useReducer(value => value + 1, 0)
@@ -32,7 +32,7 @@ const Page = () => {
   })
 
   return (
-    <Box s={{ width: '100%', div: { mih: '100vh' }, backgroundColor: config?.bgColor }}>
+    <Box css={{ width: '100%', div: { mih: '100vh' }, backgroundColor: config?.bgColor }}>
       <Canvas>
         <Scene config={config} shouldRegenerate={shouldRegenerate} />
       </Canvas>
